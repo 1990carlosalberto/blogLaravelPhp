@@ -53,4 +53,5 @@ Criar Postagem</a>
     </table>
     {{ $posts->links() }}
 
+
 @endsection
