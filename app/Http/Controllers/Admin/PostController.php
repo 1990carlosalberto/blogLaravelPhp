@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\User;
 
 
 
@@ -18,10 +19,12 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-        $data['user_id']    = 1;
         $data['is_active']  = true;
 
-        dd(Post::create($data));
+        $user = User::find(1);
+
+        //Continuamos a salvar com mass assignment mas por meio do usuário
+        dd($user->posts()->create($data));
 
 
     }

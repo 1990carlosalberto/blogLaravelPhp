@@ -41,4 +41,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+        //#No controller fazer a busca pelo usuário
+        $user = User::find(2);
+        //#Acessar a ligação de usuário e postagens
+        $user->posts; //retornará as postagens do usuário dois
+    }
 }
