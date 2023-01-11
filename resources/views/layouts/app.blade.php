@@ -23,12 +23,18 @@ get="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
             <li class="nav-item active">
                 <a class="nav-link" href="{{ route('posts.index') }}">Posts</a>
             </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="{{ route('categories.index') }}">Categorias</a>
+            </li>
         </ul>
 
     </div>
 </nav>
 <div class="container">
-        @yield('content')
+    <div class="my-4">
+        @include("flash::message")
     </div>
+    @yield('content')
+</div>
 </body>
 </html>

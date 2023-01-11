@@ -26,5 +26,6 @@ Route::resource('/users', \App\Http\Controllers\UserController::class);
 Route::prefix('admin')->group(function(){
 
     Route::resource('posts', \App\Http\Controllers\Admin\PostController::class);
+    Route::resource('categories', \App\Http\Controllers\Admin\CategoryController::class);
     });
 
