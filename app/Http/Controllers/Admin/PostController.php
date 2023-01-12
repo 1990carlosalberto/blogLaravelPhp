@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\User;
@@ -21,10 +22,17 @@ class PostController extends Controller
         $this->post = $post;
     }
 
-    public function create()
+
+
+    public function create(Category $category)
     {
-        return view('posts.create');
+        $categories = $category->all(['id', 'name']);
+
+        return view('posts.create', compact('categories'));
     }
+
+
+
 
     public function store(Request $request)
     {
@@ -59,10 +67,17 @@ class PostController extends Controller
         return view('posts.index', compact('posts'));
     }
 
-    public function show (Post $post)
+
+
+    public function show (Post $post, Category $category)
     {
-        return view('posts.edit', compact('post'));
+        $categories = $category->all('id', 'name');
+
+        return view('posts.edit', compact('post', 'categories'));
     }
+
+
+
 
     public function update (Post $post, Request $request)
     {
