@@ -27,6 +27,19 @@
 }}">
     </div>
 
+    <div class="form-group">
+        <label>Categorias</label>
+        <div class="row">
+            @foreach($categories as $c)
+                <div class="col-2 checkbox">
+                    <label>
+                        <input type="checkbox" name="categories[]" value="{{$c->id}}"> {{$c->name}}
+                    </label>
+                </div>
+            @endforeach
+        </div>
+    </div>
+
     <button class="btn btn-lg btn-success">Criar Postagem</button>
 </form>
  @endsection

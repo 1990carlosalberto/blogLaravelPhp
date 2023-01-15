@@ -41,7 +41,8 @@ class PostController extends Controller
             $data['is_active'] = true;
 
                 $user = User::find(1);
-                    $user->posts()->create($data);
+                $post = $user->posts()->create($data); //Retornará o Post inserido, atribuímos ele a variável post para usarmos abaixo no sync
+                $post->categories()->sync($data['categories']); //aqui
 
                     flash('Postagem inserida com sucesso!')->success();
                     return redirect()->route('posts.index');
@@ -86,6 +87,7 @@ class PostController extends Controller
 
             try{
                     $post->update($data);
+                    $post->categories()->sync($data['categories']); //aqui
 
                 flash('Postagem atualizada com sucesso !')->success();
                 return redirect()->route('posts.show',['post'=>$post->id]);
