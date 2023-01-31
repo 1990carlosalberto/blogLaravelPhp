@@ -40,7 +40,7 @@ class PostController extends Controller
         try{
             $data['is_active'] = true;
 
-                $user = User::find(1);
+                $user = auth()->user();
                 $post = $user->posts()->create($data); //Retornará o Post inserido, atribuímos ele a variável post para usarmos abaixo no sync
                 $post->categories()->sync($data['categories']); //aqui
 

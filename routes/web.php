@@ -23,9 +23,14 @@ Route::get('/', function () {
 Route::get('hello-world', '\\App\\Http\\Controllers\\HelloWorldController@index');
 Route::resource('/users', \App\Http\Controllers\UserController::class);
 
-Route::prefix('admin')->group(function(){
+Route::prefix('admin')->middleware('auth')->group(function(){
 
     Route::resource('posts', \App\Http\Controllers\Admin\PostController::class);
     Route::resource('categories', \App\Http\Controllers\Admin\CategoryController::class);
-    });
+});
 
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+//Route::get('/home', 'HomeController@index')->name('home');

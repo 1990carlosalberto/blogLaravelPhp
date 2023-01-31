@@ -51,4 +51,9 @@ class User extends Authenticatable
         //#Acessar a ligação de usuário e postagens
         $user->posts; //retornará as postagens do usuário dois
     }
+
+    public function profile()
+    {
+        return $this->hasOne(Profile::class);
+    }
 }

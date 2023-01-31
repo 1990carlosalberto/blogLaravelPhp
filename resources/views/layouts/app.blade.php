@@ -19,6 +19,7 @@ get="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
         <span class="navbar-toggler-icon"></span>
 </button>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    @auth
         <ul class="navbar-nav">
             <li class="nav-item active">
                 <a class="nav-link" href="{{ route('posts.index') }}">Posts</a>
@@ -27,14 +28,19 @@ get="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
                 <a class="nav-link" href="{{ route('categories.index') }}">Categorias</a>
             </li>
         </ul>
+    @endauth
+    </div>
 
-    </div>
+    <!-- Aqui o nome do usuário logado -->
+    @auth
+        <div class="float-right">
+            <strong>{{auth()->user()->name}}</strong>
+        </div>
+    @endauth
 </nav>
-<div class="container">
-    <div class="my-4">
-        @include("flash::message")
+    <div class="container">
+            @include("flash::message")
+            @yield('content')
     </div>
-    @yield('content')
-</div>
 </body>
 </html>
