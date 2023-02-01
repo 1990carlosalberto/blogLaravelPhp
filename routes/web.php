@@ -27,6 +27,7 @@ Route::prefix('admin')->middleware('auth')->group(function(){
 
     Route::resource('posts', \App\Http\Controllers\Admin\PostController::class);
     Route::resource('categories', \App\Http\Controllers\Admin\CategoryController::class);
+    Route::resource('profile', \App\Http\Controllers\Admin\ProfileController::class)->only(['index', 'update']);
 });
 
 
