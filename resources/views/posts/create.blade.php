@@ -27,6 +27,16 @@
 }}">
     </div>
 
+
+    <!-- Campo Tipo File -->
+
+    <div class="form-group">
+        <label>Foto de Capa</label>
+        <input type="file" name="thumb">
+    </div>
+
+    <!-- Campo Tipo File -->
+
     <div class="form-group">
         <label>Categorias</label>
         <div class="row">
@@ -40,6 +50,8 @@
         </div>
     </div>
 
-    <button class="btn btn-lg btn-success">Criar Postagem</button>
+    <div class="form-group">
+        <button class="btn btn-lg btn-success">Criar Postagem</button>
+    </div>
 </form>
  @endsection

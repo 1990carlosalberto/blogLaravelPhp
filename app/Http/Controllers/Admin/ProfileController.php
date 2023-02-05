@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
@@ -34,12 +35,24 @@ class ProfileController extends Controller
 
             $user = auth()->user();
 
+            if($request->hasFile('avatar')) {
+
+                Storage::disk('public')->delete($user->avatar);
+
+                $profileData['avatar'] = $request->file('avatar')->store('avatars', 'public');
+
+            } else {
+                    unset($profileData['avatar']);
+            }
+
             $user->update($userData);
 
             $user->profile()->update($profileData);
 
             flash('Perfil atualizado com sucesso!')->success();
             return redirect()->route('profile.index');
+
+
 
         } catch(\Exception $e) {
 
@@ -51,6 +64,10 @@ class ProfileController extends Controller
 
                 flash($message)->warning();
                 return redirect()->back();
+
+
+
+
 
     }
  }

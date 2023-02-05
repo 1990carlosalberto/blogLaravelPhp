@@ -27,6 +27,15 @@
         <input type="text" name="slug" class="form-control" value="{{$post->slug}}">
  </div>
 
+ <!-- Campo Tipo File -->
+
+ <div class="form-group">
+        <label>Foto de Capa</label>
+        <input type="file" name="thumb">
+ </div>
+
+ <!-- Campo Tipo File -->
+
  <div class="form-group">
     <label>Categorias</label>
     <div class="row">

@@ -41,6 +41,13 @@ class PostController extends Controller
             $data['is_active'] = true;
 
                 $user = auth()->user();
+
+                if($request->hasFile('thumb')) {
+                    $data['thumb'] = $request->file('thumb')->store('thumbs', 'public');
+                } else {
+                    unset($data['thumb']);
+                }
+
                 $post = $user->posts()->create($data); //Retornará o Post inserido, atribuímos ele a variável post para usarmos abaixo no sync
                 $post->categories()->sync($data['categories']); //aqui
 
@@ -86,6 +93,17 @@ class PostController extends Controller
         $data = $request->all();
 
             try{
+                if($request->hasFile('thumb')) {
+
+                    //Remove a imagem atual
+                    Storage::disk('public')->delete($post->thumb);
+
+                    $data['thumb'] = $request->file('thumb')->store('thumbs', 'public');
+
+                } else {
+                    unset($data['thumb']);
+                }
+
                     $post->update($data);
                     $post->categories()->sync($data['categories']); //aqui
 
