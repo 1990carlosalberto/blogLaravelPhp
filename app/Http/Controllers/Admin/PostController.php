@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Models\Category;
+use App\Models\{Post, User, Category};
 use Illuminate\Http\Request;
-use App\Models\Post;
-use App\Models\User;
+use App\Http\Requests\PostRequest;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 
 
 
@@ -34,7 +35,7 @@ class PostController extends Controller
 
 
 
-    public function store(Request $request)
+    public function store(PostRequest $request)
     {
         $data = $request->all();
         try{
@@ -53,6 +54,7 @@ class PostController extends Controller
 
                     flash('Postagem inserida com sucesso!')->success();
                     return redirect()->route('posts.index');
+
         } catch (\Exception $e) {
                 $message = 'Erro ao remover categoria!';
 
@@ -87,7 +89,7 @@ class PostController extends Controller
 
 
 
-    public function update (Post $post, Request $request)
+    public function update (Post $post, PostRequest $request)
     {
 
         $data = $request->all();
