@@ -6,6 +6,7 @@
         @csrf
         @method("PUT")
 
+
         <div class="form-group">
             <label>Nome</label>
             <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" value="{{$category->name}}">
